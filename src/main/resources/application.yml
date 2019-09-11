@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://47.96.237.94:3306/hp-tv
+    url: jdbc:mysql://47.96.237.94:3306/hp-tv?useUnicode=true&characterEncoding=UTF8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -29,16 +29,26 @@ spring:
         reset-enable: true
         login-username: admin
         login-password: admin
-  resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:/img
+#  resources:
+#    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:D://img//
+
 
 
 server:
   port: 8080
 
+
+
+
+##配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
+#cbs.imagesPath: file:/M:/fileUpload/
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.hp.pojo
+  configuration:
+    mapUnderscoreToCamelCase: true
+    logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapperLocations: classpath:com/hp/resources/**/*.xml
 
-  #配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
-  cbs.imagesPath: file:/M:/fileUpload/
+
+

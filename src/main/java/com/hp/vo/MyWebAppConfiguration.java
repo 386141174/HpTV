@@ -1,16 +1,19 @@
 package com.hp.vo;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.List;
 
 @Configuration
-public class MyWebAppConfiguration extends WebMvcConfigurationSupport {
-
+public class MyWebAppConfiguration implements WebMvcConfigurer {
 
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**").addResourceLocations("file:/img");
-        super.addResourceHandlers(registry);
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/img/**").addResourceLocations("file:D:/file/");
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.IIOException;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Random;
 import java.util.UUID;
 
@@ -25,6 +27,16 @@ public class LiveServiceImp implements LiveService {
 
     private final String resourcesPath = "/img/";
 
+
+    /**
+     * 申请直播间
+     * @param title
+     * @param name
+     * @param username
+     * @param image
+     * @param crossfire
+     * @return
+     */
     @Override
     public int createRoom(String title, String name, String username, MultipartFile image, String crossfire) {
         String img = saveImage(image);
@@ -52,8 +64,8 @@ public class LiveServiceImp implements LiveService {
         String filename = fileAllname.substring(0,fileAllname.indexOf("."));
         String fileExtname = fileAllname.substring(fileAllname.indexOf("."));
         String uuid = UUID.randomUUID().toString();
-        String filepath = resourcesPath + uuid + filename + fileExtname;
-        System.out.println(filepath);
+        String filepath = "D:/file/" + uuid + filename + fileExtname;
+        String fileDataSource = "http://localhost:8080"+resourcesPath + uuid + filename + fileExtname;
 
         try{
             FileUtils.copyInputStreamToFile(file.getInputStream(),new File(filepath));
@@ -61,7 +73,17 @@ public class LiveServiceImp implements LiveService {
             e.printStackTrace();
         }
 
-        return filepath;
+        return fileDataSource;
     }
 
+
+    /**
+     * 查询直播间信息
+     * @param username 根据用户名查找
+     * @return
+     */
+    @Override
+    public Live selectRoom(String username) {
+        return liveDao.selectRoom(username);
+    }
 }
