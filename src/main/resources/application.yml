@@ -39,3 +39,6 @@ server:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.hp.pojo
+
+  #配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）
+  cbs.imagesPath: file:/M:/fileUpload/
