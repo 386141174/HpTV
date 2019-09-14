@@ -1,6 +1,7 @@
 package com.hp.controller;
 
 
+import com.hp.pojo.ShiPin;
 import com.hp.service.ShiPinService;
 import com.hp.utils.Info;
 import com.hp.utils.JsonResult;

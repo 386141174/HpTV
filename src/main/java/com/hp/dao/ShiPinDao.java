@@ -1,5 +1,6 @@
 package com.hp.dao;
 
+import com.hp.pojo.ShiPin;
 import com.hp.utils.Info;
 import org.springframework.stereotype.Repository;
 
