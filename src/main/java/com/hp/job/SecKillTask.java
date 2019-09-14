@@ -48,9 +48,7 @@ public class SecKillTask {
             pros = new ArrayList<>();
         }else {
             //过滤掉已经超过结束时间失效的课程
-            System.out.println("1------------>"+pros);
             pros = pros.stream().filter(v -> now.before(v.getEndTime())).collect(Collectors.toList());
-            System.out.println("2------------>"+pros);
             pros.stream().forEach(v->ids.add(v.getId() ));
         }
 
