@@ -2,12 +2,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hp.dao.ShiPinDao">
-    <insert id="insertUrl" parameterType="com.hp.pojo.ShiPin" >
+<mapper namespace="com.hp.dao.VideoDao">
+    <insert id="inserVideo" parameterType="com.hp.pojo.Video" >
         insert into video (url,name,lujing,filetype) values (#{url},#{name},#{lujing},#{filetype})
     </insert>
     
-    <select id="selectShipinCount" parameterType="com.hp.utils.Info" resultType="Integer">
+    <select id="selectVideoCount" parameterType="com.hp.utils.Info" resultType="Integer">
         select count(1) from video
         <where>
             <if test="filetype!=null and filetype!=''">
@@ -16,7 +16,7 @@
         </where>
     </select>
     
-    <select id="selAllOrders" parameterType="com.hp.utils.Info" resultType="com.hp.pojo.ShiPin">
+    <select id="selAllOrders" parameterType="com.hp.utils.Info" resultType="com.hp.pojo.Video">
         select * from video
         <where>
             <if test="filetype!=null and filetype!=''">

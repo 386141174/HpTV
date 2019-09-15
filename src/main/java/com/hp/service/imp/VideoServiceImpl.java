@@ -1,28 +1,28 @@
 package com.hp.service.imp;
 
-import com.hp.dao.ShiPinDao;
-import com.hp.pojo.ShiPin;
-import com.hp.service.ShiPinService;
+import com.hp.dao.VideoDao;
+import com.hp.pojo.Video;
+import com.hp.service.VideoService;
 import com.hp.utils.Info;
 import com.hp.utils.PageObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ShiPinServiceImpl implements ShiPinService {
+public class VideoServiceImpl implements VideoService {
 
     @Autowired
-    private ShiPinDao shiPinDao;
+    private VideoDao videoDao;
 
     /**插入视频*/
-    public int insertUrl(ShiPin shiPin) {
-        int jieguo = shiPinDao.insertUrl(shiPin);
+    public int inserVideo(Video video) {
+        int jieguo = videoDao.inserVideo(video);
         return jieguo;
     }
 
     /**查询视频*/
-    public PageObject<ShiPin> selectShipin(Info info) {
-        PageObject<ShiPin> pageObject = new PageObject<ShiPin>();
+    public PageObject<Video> selectVideo(Info info) {
+        PageObject<Video> pageObject = new PageObject<Video>();
         /**设置每页显示条数*/
         info.setSize(5);
 
@@ -33,7 +33,7 @@ public class ShiPinServiceImpl implements ShiPinService {
         }
 
         /**总记录数*/
-        pageObject.setTotal(shiPinDao.selectShipinCount(info));
+        pageObject.setTotal(videoDao.selectVideoCount(info));
 
         /**总页数*/
         if (pageObject.getTotal() % info.getSize()!=0){
@@ -43,7 +43,7 @@ public class ShiPinServiceImpl implements ShiPinService {
         }
 
         /**结果集*/
-        pageObject.setItems(shiPinDao.selAllOrders(info));
+        pageObject.setItems(videoDao.selAllOrders(info));
 
         return pageObject;
     }

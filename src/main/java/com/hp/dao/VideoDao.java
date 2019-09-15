@@ -1,21 +1,21 @@
 package com.hp.dao;
 
-import com.hp.pojo.ShiPin;
+import com.hp.pojo.Video;
 import com.hp.utils.Info;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ShiPinDao {
+public interface VideoDao {
 
     /**插入视频*/
-    public int insertUrl(ShiPin shiPin);
+    public int inserVideo(Video video);
 
 
     /**总记录数*/
-    public Integer selectShipinCount(Info info);
+    public Integer selectVideoCount(Info info);
 
     /**结果集*/
-    public List<ShiPin> selAllOrders(Info info);
+    public List<Video> selAllOrders(Info info);
 }

@@ -4,7 +4,7 @@ package com.hp.pojo;
  *
  * 视频类
  */
-public class ShiPin {
+public class Video {
 
     /**视频id*/
     private int id;
@@ -17,10 +17,10 @@ public class ShiPin {
     /**视频类型*/
     private String filetype;
 
-    public ShiPin() {
+    public Video() {
     }
 
-    public ShiPin(String name, String url, String lujing, String filetype) {
+    public Video(String name, String url, String lujing, String filetype) {
         this.name = name;
         this.url = url;
         this.lujing = lujing;
@@ -69,7 +69,7 @@ public class ShiPin {
 
     @Override
     public String toString() {
-        return "ShiPin{" +
+        return "Video{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +

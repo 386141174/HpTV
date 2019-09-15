@@ -1,8 +1,8 @@
 package com.hp.controller;
 
 
-import com.hp.pojo.ShiPin;
-import com.hp.service.ShiPinService;
+import com.hp.pojo.Video;
+import com.hp.service.VideoService;
 import com.hp.utils.Info;
 import com.hp.utils.JsonResult;
 import com.hp.utils.PageObject;
@@ -18,11 +18,11 @@ import java.io.IOException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/shipin")
-public class ShiPinController {
+@RequestMapping(value = "/video")
+public class VideoController {
 
     @Autowired
-    private ShiPinService shiPinService;
+    private VideoService videoService;
 
     /**上传视频
      * fileType：上传视频类型
@@ -48,7 +48,7 @@ public class ShiPinController {
         String newName=uuid+extension;
         //新的文件名称
         System.out.println("新的文件名称-----"+newName);
-        String path = "M:/fileUpload/" +newName;
+        String path = "M:/file/" +newName;
         //文件绝对路径
         System.out.print("保存文件绝对路径"+path+"\n");
         //创建文件路径
@@ -57,9 +57,9 @@ public class ShiPinController {
         try {
             //上传文件
             file.transferTo(dest); //保存文件
-            String url="http://localhost:8080/images/"+newName;
-            ShiPin shiPin=new ShiPin(url,newName,path,fileType);
-            int jieguo= shiPinService.insertUrl(shiPin);
+            String url="http://localhost:8080/img/"+newName;
+            Video video=new Video(url,newName,path,fileType);
+            int jieguo= videoService.inserVideo(video);
         } catch (IOException e) {
             return new JsonResult(0,"上传失败");
         }
@@ -68,10 +68,10 @@ public class ShiPinController {
     }
 
     //查询
-    @PostMapping(value = "/chaxun")
-    public JsonResult huizhiDuanxin(Info info){
+    @PostMapping(value = "/selectVideo")
+    public JsonResult selectVideo(Info info){
         System.out.println(info);
-        PageObject<ShiPin> pageObject= shiPinService.selectShipin(info);
+        PageObject<Video> pageObject= videoService.selectVideo(info);
         return new JsonResult(1,pageObject);
     }
 }
