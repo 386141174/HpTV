@@ -29,9 +29,9 @@ spring:
         reset-enable: true
         login-username: admin
         login-password: admin
-        redis:
-          host: 127.0.0.1
-          port: 6379
+  redis:
+    host: 114.115.206.75
+    port: 6379
 #  resources:
 #    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:D://img//
 
