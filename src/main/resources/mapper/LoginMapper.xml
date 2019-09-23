@@ -13,10 +13,13 @@
 
     </select>
 
-    <!--添加用户名和密码-->
-    <insert id="addUser" >
-        insert into userlogin(username,password) value(#{username},#{password})
+    <!--添加用户名和密码和其他详细信息-->
+    <insert id="addUser" parameterType="com.hp.pojo.UserLogin">
+        insert into userlogin(username,password,realName,sex,idCard,tel,email,userType)
+        value(#{username},#{password},#{realName},#{sex},#{idCard},#{tel},#{email},#{userType})
     </insert>
+
+
 
    <!-- 添加用户备注密码-->
     <update id="updateRemarkByUsername">

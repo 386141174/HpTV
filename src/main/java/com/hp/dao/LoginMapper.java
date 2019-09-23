@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface LoginMapper {
     UserLogin Login(@Param("username") String username);
     int selectbyUsername(@Param("username") String username);
-    boolean addUser(@Param("username") String username, @Param("password") String password);
+    boolean addUser(UserLogin userLogin);
     boolean updateRemarkByUsername(@Param("remark") String remark, @Param("username") String username);
 
 

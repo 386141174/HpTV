@@ -6,7 +6,7 @@ public interface LoginService {
 
     public UserLogin Login(String username);
     int selectbyUsername(String username);
-    boolean addUser(String username, String password);
+    boolean addUser(UserLogin userLogin);
     boolean updateRemarkByUsername(String remark, String username);
 
 }
