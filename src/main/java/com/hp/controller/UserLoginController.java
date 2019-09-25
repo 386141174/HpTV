@@ -5,6 +5,7 @@ import com.hp.result.Result;
 import com.hp.result.ResultFactory;
 import com.hp.service.LoginService;
 import com.hp.utils.EdsUtil;
+import com.hp.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,9 @@ public class UserLoginController {
     @PostMapping(value = "/login")
     public Result Login( @RequestParam(value="username" )String username, @RequestParam(value = "password") String password, HttpSession session) {
 
-
         UserLogin userLogin = loginService.Login(username);
         if(userLogin!=null){
-            if(EdsUtil.decryptBasedDes(userLogin.getPassword()).equals(password)){
+            if(MD5Utils.MD5(password).equals(userLogin.getPassword())){
                 session.setAttribute("user",userLogin);
                 return ResultFactory.buildSuccessResult(userLogin);
             }else {
@@ -52,7 +52,8 @@ public class UserLoginController {
         }
         else  {
             String remark=userLogin.getPassword();
-            String password=EdsUtil.encryptBasedDes(userLogin.getPassword());
+           /* String password=EdsUtil.encryptBasedDes(userLogin.getPassword());*/
+            String password=MD5Utils.MD5(userLogin.getPassword());
             System.out.println("password1:"+password);
             userLogin.setPassword(password);
             boolean flag = loginService.addUser(userLogin);
