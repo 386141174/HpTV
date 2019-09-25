@@ -28,7 +28,9 @@ public class VideoController {
      * fileType：上传视频类型
      * */
     @PostMapping(value = "/uploadFile")
-    public JsonResult uploadFile(@RequestParam("filetype") String fileType, @RequestParam("fileName") MultipartFile file) {
+    public JsonResult uploadFile(@RequestParam("filetype") String fileType,
+                                 @RequestParam("videoname") String videoname,
+                                 @RequestParam("fileName") MultipartFile file) {
 
 
         //判断文件是否为空
@@ -58,7 +60,8 @@ public class VideoController {
             //上传文件
             file.transferTo(dest); //保存文件
             String url="http://localhost:8080/img/"+newName;
-            Video video=new Video(url,newName,path,fileType);
+//            Video video=new Video(url,newName,path,fileType);
+            Video video=new Video(newName,url,path,fileType,videoname);
             int jieguo= videoService.inserVideo(video);
         } catch (IOException e) {
             return new JsonResult(0,"上传失败");
