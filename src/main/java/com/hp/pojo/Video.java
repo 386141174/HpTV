@@ -8,7 +8,7 @@ public class Video {
 
     /**视频id*/
     private int id;
-    /**视频名称*/
+    /**视频本地名称*/
     private String name;
     /**视频访问路径*/
     private String url;
@@ -16,16 +16,22 @@ public class Video {
     private String lujing;
     /**视频类型*/
     private String filetype;
+    /**视频上传名称*/
+    private String videoname;
 
     public Video() {
     }
 
-    public Video(String name, String url, String lujing, String filetype) {
+
+    public Video( String name, String url, String lujing, String filetype, String videoname) {
+        this.id = id;
         this.name = name;
         this.url = url;
         this.lujing = lujing;
         this.filetype = filetype;
+        this.videoname = videoname;
     }
+
 
     public int getId() {
         return id;
@@ -59,12 +65,20 @@ public class Video {
         this.lujing = lujing;
     }
 
-    public String getType() {
+    public String getFiletype() {
         return filetype;
     }
 
-    public void setType(String type) {
-        this.filetype = type;
+    public void setFiletype(String filetype) {
+        this.filetype = filetype;
+    }
+
+    public String getVideoname() {
+        return videoname;
+    }
+
+    public void setVideoname(String videoname) {
+        this.videoname = videoname;
     }
 
     @Override
@@ -74,7 +88,8 @@ public class Video {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", lujing='" + lujing + '\'' +
-                ", type='" + filetype + '\'' +
+                ", filetype='" + filetype + '\'' +
+                ", videoname='" + videoname + '\'' +
                 '}';
     }
 }

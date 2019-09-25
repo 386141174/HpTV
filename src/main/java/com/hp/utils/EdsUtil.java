@@ -5,6 +5,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
+import sun.misc.BASE64Encoder;
+import java.util.Base64.Decoder;
 
 public class EdsUtil {
     /**
@@ -25,7 +27,7 @@ public class EdsUtil {
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.ENCRYPT_MODE, key, sr);
             // 加密，并把字节数组编码成字符串
-            encryptedData = new sun.misc.BASE64Encoder().encode(cipher.doFinal(data.getBytes()));
+            encryptedData = new BASE64Encoder().encode(cipher.doFinal(data.getBytes()));
         } catch (Exception e) {
             // log.error("加密错误，错误信息：", e);
             throw new RuntimeException("加密错误，错误信息：", e);

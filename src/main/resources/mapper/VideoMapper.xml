@@ -4,7 +4,7 @@
 
 <mapper namespace="com.hp.dao.VideoDao">
     <insert id="inserVideo" parameterType="com.hp.pojo.Video" >
-        insert into video (url,name,lujing,filetype) values (#{url},#{name},#{lujing},#{filetype})
+        insert into video (name,url,lujing,filetype,videoname) values (#{name},#{url},#{lujing},#{filetype},#{videoname})
     </insert>
     
     <select id="selectVideoCount" parameterType="com.hp.utils.Info" resultType="Integer">
@@ -12,6 +12,9 @@
         <where>
             <if test="filetype!=null and filetype!=''">
                 filetype=#{filetype}
+            </if>
+            <if test="videoname!=null and videoname!=''">
+                and videoname like '%${videoname}%'
             </if>
         </where>
     </select>
@@ -21,6 +24,9 @@
         <where>
             <if test="filetype!=null and filetype!=''">
                 filetype=#{filetype}
+            </if>
+            <if test="videoname!=null and videoname!=''">
+                and videoname like '%${videoname}%'
             </if>
         </where>
          limit #{startRow},#{size}

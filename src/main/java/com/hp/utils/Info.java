@@ -6,6 +6,8 @@ package com.hp.utils;
 public class Info {
     /***视频类型*/
     private String filetype;
+    /**视频名称*/
+    private String videoname;
     /**每页条数*/
     private Integer size;
     /**当前页码*/
@@ -16,8 +18,9 @@ public class Info {
     public Info() {
     }
 
-    public Info(String filetype, Integer size, Integer pageCurrent, Integer startRow) {
+    public Info(String filetype, String videoname, Integer size, Integer pageCurrent, Integer startRow) {
         this.filetype = filetype;
+        this.videoname = videoname;
         this.size = size;
         this.pageCurrent = pageCurrent;
         this.startRow = startRow;
@@ -29,6 +32,14 @@ public class Info {
 
     public void setFiletype(String filetype) {
         this.filetype = filetype;
+    }
+
+    public String getVideoname() {
+        return videoname;
+    }
+
+    public void setVideoname(String videoname) {
+        this.videoname = videoname;
     }
 
     public Integer getSize() {
@@ -59,6 +70,7 @@ public class Info {
     public String toString() {
         return "Info{" +
                 "filetype='" + filetype + '\'' +
+                ", videoname='" + videoname + '\'' +
                 ", size=" + size +
                 ", pageCurrent=" + pageCurrent +
                 ", startRow=" + startRow +
