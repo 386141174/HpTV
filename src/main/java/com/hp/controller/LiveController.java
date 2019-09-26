@@ -4,11 +4,10 @@ import com.hp.pojo.Live;
 import com.hp.service.LiveService;
 import com.hp.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+
 
 @RestController
 @RequestMapping("/live")
@@ -17,6 +16,7 @@ public class LiveController {
 
     @Autowired
     private LiveService liveService;
+
 
     @PostMapping("create")
     public JsonResult createRoom(   @RequestParam("title") String title,
@@ -38,12 +38,10 @@ public class LiveController {
      */
     @GetMapping("selectRoom")
     public JsonResult selectRoom(@RequestParam("username") String username){
-
         Live live = liveService.selectRoom(username);
-
-//        System.out.println();
         return new JsonResult(1,live);
     }
+
 
 
 }
