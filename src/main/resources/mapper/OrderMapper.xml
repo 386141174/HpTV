@@ -3,7 +3,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hp.dao.OrderDao">
-    <insert id="insertOrder" parameterType="Order">
-        insert into order(orderId, username, course) values (#{orderId},#{username},#{course})
+<!--    <insert id="insertOrder" parameterType="Order">-->
+<!--        insert into order(orderId, username, course) values (#{orderId},#{username},#{course})-->
+<!--    </insert>-->
+
+    <insert id="saveOrder">
+
+            insert into hp_orders(orderId, username, course)
+        values
+        <foreach collection="list" item="c" separator="," index="index">
+             (#{c.orderId},#{c.username},#{c.course})
+        </foreach>
     </insert>
+
+
+
 </mapper>
