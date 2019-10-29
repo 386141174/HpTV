@@ -1,0 +1,31 @@
+package com.hp.vo;
+
+public class TokenBean {
+    private String introduction;
+    private String name;
+    private String[] roles;
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String[] getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String[] roles) {
+        this.roles = roles;
+    }
+}

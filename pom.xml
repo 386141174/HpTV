@@ -11,6 +11,7 @@
     <groupId>com.hp</groupId>
     <artifactId>hptv</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>hptv</name>
     <description>Demo project for Spring Boot</description>
 
@@ -103,7 +104,29 @@
             <version>1.2.47</version>
         </dependency>
 
+<<<<<<< Updated upstream
 
+=======
+        <dependency>
+
+            <groupId>redis.clients</groupId>
+
+            <artifactId>jedis</artifactId>
+
+            <version>3.0.0</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>com.alibaba</groupId>
+
+            <artifactId>fastjson</artifactId>
+
+            <version>1.2.54</version>
+
+        </dependency>
+>>>>>>> Stashed changes
     </dependencies>
 
     <build>
