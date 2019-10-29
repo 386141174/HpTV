@@ -4,5 +4,5 @@ import com.hp.pojo.Order;
 
 public interface OrderService {
     int insertOrder(Order order);
-
+    boolean saveOrder();
 }

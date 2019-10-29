@@ -1,16 +1,19 @@
 package com.hp.pojo;
 
-public class Order {
 
-    private int orderId;
+import java.io.Serializable;
+
+public class Order  implements Serializable {
+
+    private String orderId;
     private String username;
     private String course;
 
-    public int getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
