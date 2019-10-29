@@ -1,7 +1,9 @@
 package com.hp.pojo;
 
-public class UserLogin {
+import java.io.Serializable;
 
+public class UserLogin implements Serializable {
+    private static final long serialVersionUID=1L;
     private int id;
     private String username;
     private String password;
@@ -92,5 +94,21 @@ public class UserLogin {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    @Override
+    public String toString() {
+        return "UserLogin{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", remark='" + remark + '\'' +
+                ", realName='" + realName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
     }
 }

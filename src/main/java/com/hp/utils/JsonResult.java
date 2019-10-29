@@ -1,11 +1,16 @@
 package com.hp.utils;
 
+
+
 /**
  * 用于封装控制层（Controller与客户端交互的数据信息） 通过重载有参构造函数，可以选择不同类型的封装方法
  *
  * @author Yang
  *
  */
+
+
+
 public class JsonResult {
 
 	private Integer state;//状态码信息： state = 1 表示成功 state = 0 表示失败
