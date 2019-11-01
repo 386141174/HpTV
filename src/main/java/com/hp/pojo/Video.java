@@ -9,29 +9,37 @@ public class Video {
     /**视频id*/
     private int id;
     /**视频本地名称*/
-    private String name;
+    private String videoName;
     /**视频访问路径*/
-    private String url;
-    /**本地磁盘路径*/
-    private String lujing;
+    private String videoUrl;
+    /**视频本地磁盘路径*/
+    private String videoPath;
+    /**图片本地名称*/
+    private String picName;
+    /**图片访问路径*/
+    private String picUrl;
+    /**图片本地磁盘路径*/
+    private String picPath;
     /**视频类型*/
     private String filetype;
     /**视频上传名称*/
-    private String videoname;
+    private String upVideoName;
 
     public Video() {
     }
 
-
-    public Video( String name, String url, String lujing, String filetype, String videoname) {
-        this.id = id;
-        this.name = name;
-        this.url = url;
-        this.lujing = lujing;
+    public Video(String videoName, String videoUrl, String videoPath,
+                 String picName, String picUrl, String picPath,
+                 String filetype, String upVideoName) {
+        this.videoName = videoName;
+        this.videoUrl = videoUrl;
+        this.videoPath = videoPath;
+        this.picName = picName;
+        this.picUrl = picUrl;
+        this.picPath = picPath;
         this.filetype = filetype;
-        this.videoname = videoname;
+        this.upVideoName = upVideoName;
     }
-
 
     public int getId() {
         return id;
@@ -41,28 +49,52 @@ public class Video {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getVideoName() {
+        return videoName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
     }
 
-    public String getUrl() {
-        return url;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
-    public String getLujing() {
-        return lujing;
+    public String getVideoPath() {
+        return videoPath;
     }
 
-    public void setLujing(String lujing) {
-        this.lujing = lujing;
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
+    }
+
+    public String getPicName() {
+        return picName;
+    }
+
+    public void setPicName(String picName) {
+        this.picName = picName;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
     }
 
     public String getFiletype() {
@@ -73,23 +105,26 @@ public class Video {
         this.filetype = filetype;
     }
 
-    public String getVideoname() {
-        return videoname;
+    public String getUpVideoName() {
+        return upVideoName;
     }
 
-    public void setVideoname(String videoname) {
-        this.videoname = videoname;
+    public void setUpVideoName(String upVideoName) {
+        this.upVideoName = upVideoName;
     }
 
     @Override
     public String toString() {
         return "Video{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", lujing='" + lujing + '\'' +
+                ", videoName='" + videoName + '\'' +
+                ", videoUrl='" + videoUrl + '\'' +
+                ", videoPath='" + videoPath + '\'' +
+                ", picName='" + picName + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", picPath='" + picPath + '\'' +
                 ", filetype='" + filetype + '\'' +
-                ", videoname='" + videoname + '\'' +
+                ", upVideoName='" + upVideoName + '\'' +
                 '}';
     }
 }

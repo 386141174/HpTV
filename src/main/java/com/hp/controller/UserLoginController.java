@@ -39,9 +39,9 @@ public class UserLoginController {
         if (userLogin != null) {
             if (MD5Utils.MD5(password).equals(userLogin.getPassword())) {
                 /*session.setAttribute("user",userLogin);*/
-                String token = SetRedisData(username, password);
+               String token = SetRedisData(username, password);
                 obj.put("status", "用户登录成功");
-                obj.put("token", token);
+               obj.put("token", token);
                 return new JsonResult(1, "登录成功", userLogin);
             } else {
                 String message = "账号或密码错误！";

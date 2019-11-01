@@ -24,7 +24,7 @@ public class VideoServiceImpl implements VideoService {
     public PageObject<Video> selectVideo(Info info) {
         PageObject<Video> pageObject = new PageObject<Video>();
         /**设置每页显示条数*/
-        info.setSize(5);
+        info.setSize(9);
 
         if (info.getPageCurrent()!=null){
             pageObject.setPageCurrent(info.getPageCurrent());

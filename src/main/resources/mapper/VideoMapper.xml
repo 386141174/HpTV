@@ -3,10 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hp.dao.VideoDao">
+    <!--上传视频-->
     <insert id="inserVideo" parameterType="com.hp.pojo.Video" >
-        insert into video (name,url,lujing,filetype,videoname) values (#{name},#{url},#{lujing},#{filetype},#{videoname})
+        insert into video (videoName,videoUrl,videoPath,picName,picUrl,picPath,filetype,upVideoName)
+         values (#{videoName},#{videoUrl},#{videoPath},#{picName},#{picUrl},#{picPath},#{filetype},#{upVideoName})
     </insert>
-    
+    <!--视频总数-->
     <select id="selectVideoCount" parameterType="com.hp.utils.Info" resultType="Integer">
         select count(1) from video
         <where>
@@ -18,7 +20,7 @@
             </if>
         </where>
     </select>
-    
+    <!--视频结果集-->
     <select id="selAllOrders" parameterType="com.hp.utils.Info" resultType="com.hp.pojo.Video">
         select * from video
         <where>

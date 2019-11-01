@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hp.dao.LoginMapper">
-
     <!--根据用户名查找用户名和密码-->
     <select id="Login"   resultType="com.hp.pojo.UserLogin">
         select id,username ,password from userlogin where username=#{username}
-    </select>
-
-    //查询用户的token
-    <select id="selectUser" resultType="com.hp.pojo.UserLogin">
-        select token from userlogin where username = #{userName} and password = #{passWord}
     </select>
 
     <!--根据用户名查询数据库中是否已有用户名记录-->
@@ -24,11 +18,14 @@
         value(#{username},#{password},#{realName},#{sex},#{idCard},#{tel},#{email},#{userType})
     </insert>
 
-
-
-   <!-- 添加用户备注密码-->
+    <!-- 添加用户备注密码-->
     <update id="updateRemarkByUsername">
          update userlogin set remark=#{remark} where username=#{username}
     </update>
+
+    <!--//查询用户的token-->
+    <select id="selectUser" resultType="com.hp.pojo.UserLogin">
+        select token from userlogin where username = #{userName} and password = #{passWord}
+    </select>
 
 </mapper>
