@@ -16,7 +16,7 @@
                 filetype=#{filetype}
             </if>
             <if test="videoname!=null and videoname!=''">
-                and videoname like '%${videoname}%'
+                and upVideoName like '%${videoname}%'
             </if>
         </where>
     </select>
@@ -28,7 +28,7 @@
                 filetype=#{filetype}
             </if>
             <if test="videoname!=null and videoname!=''">
-                and videoname like '%${videoname}%'
+                and upVideoName like '%${videoname}%'
             </if>
         </where>
          limit #{startRow},#{size}
