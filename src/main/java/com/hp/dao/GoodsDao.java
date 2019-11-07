@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface GoodsDao {
 
     int createGoods(Goods goods);
-    Goods showGoods(@Param("username") String username);
+    Goods showGoods();
 }

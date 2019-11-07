@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 
 
 @RestController
@@ -42,6 +43,35 @@ public class LiveController {
         return new JsonResult(1,live);
     }
 
+    /**
+     * 更新直播间信息
+     * @param title 标题
+     * @param name 老师名称
+     * @param image 封面
+     * @param crossfire 串流码
+     * @return
+     */
+    @PostMapping("updateRoom")
+    public JsonResult updateRoom(@RequestParam("title") String title,
+                                 @RequestParam("username") String username,
+                                 @RequestParam("name") String name,
+                                 @RequestParam(value = "image",required = false) MultipartFile image,
+                                 @RequestParam("crossfire") String crossfire){
+
+        int count = liveService.updateRoom(title,name,username,image,crossfire);
+        return count == 1? new JsonResult(1,"success") : new JsonResult(0,"error");
+    }
+
+
+    /**
+     * 查询所有直播间信息
+     * @return
+     */
+    @GetMapping("selectListRoom")
+    public JsonResult selectListRoom(){
+        List<Live> lives = liveService.selectListRoom();
+        return new JsonResult(1,lives);
+    }
 
 
 }

@@ -6,6 +6,7 @@ import com.hp.pojo.Live;
 import com.hp.service.LiveService;
 
 
+import com.hp.utils.JsonResult;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -85,5 +87,39 @@ public class LiveServiceImp implements LiveService {
     @Override
     public Live selectRoom(String username) {
         return liveDao.selectRoom(username);
+    }
+
+
+    /**
+     * 更新直播间信息
+     * @param title 标题
+     * @param name 老师名称
+     * @param image 封面
+     * @param crossfire 串流码
+     * @return
+     */
+    @Override
+    public int updateRoom(String title, String name, String username, MultipartFile image, String crossfire) {
+        String img =null;
+        if (image != null){
+           img = saveImage(image);
+        }
+
+        Live live = new Live();
+        live.setImage(img);
+        live.setTitle(title);
+        live.setName(name);
+        live.setCrossfire(crossfire);
+        live.setUsername(username);
+        return liveDao.updateRoom(live);
+    }
+
+    /**
+     * 查询所有直播间信息
+     * @return
+     */
+    @Override
+    public List<Live> selectListRoom() {
+        return liveDao.selectListRoom();
     }
 }

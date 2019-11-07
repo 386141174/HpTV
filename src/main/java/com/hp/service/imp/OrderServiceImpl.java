@@ -35,7 +35,6 @@ public class OrderServiceImpl implements OrderService {
             redisTemplate.opsForList().leftPush(redisKey.ORDER_KEY,order);
         }
         return 1;
-
     }
 
     /**
@@ -45,8 +44,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean saveOrder() {
         boolean ifExist =  redisTemplate.hasKey(redisKey.ORDER_KEY);
-
-
         if (ifExist){
             List<Order> orders = redisTemplate.opsForList().range(redisKey.ORDER_KEY,0,-1);
             int count = orderDao.saveOrder(orders);

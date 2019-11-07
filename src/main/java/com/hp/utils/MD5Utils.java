@@ -1,11 +1,6 @@
 package com.hp.utils;
 
-import com.sun.org.apache.xml.internal.security.algorithms.MessageDigestAlgorithm;
-import org.apache.tomcat.util.digester.Digester;
-import org.springframework.util.DigestUtils;
-
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class MD5Utils {
    /* MD5算法加密*/

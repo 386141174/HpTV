@@ -6,6 +6,15 @@ public class UserPower implements Serializable {
     private static final long serialVersionUID = 1628251423436596789L;
     private String roles;
     private String power;
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getPower() {
         return power;

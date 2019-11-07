@@ -33,6 +33,11 @@ spring:
     host: 118.31.68.233
     port: 6379
     timeout: 10000
+  rabbitmq:
+    host: 118.31.68.233
+    port: 5672
+    username: admin
+    password: admin
 
   #设置文件上传文件大小
   servlet:

@@ -2,7 +2,9 @@ package com.hp.controller;
 
 
 import com.hp.pojo.Order;
+import com.hp.service.LiveService;
 import com.hp.service.OrderService;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +22,21 @@ public class OrderController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
+    static int i = 1;
+
     @RequestMapping("order")
     public int a(){
+
         Order order = new Order();
         order.setCourse("如何从搬砖小哥到百万年薪的大牛");
         order.setUsername("liu");
 
-        return orderService.insertOrder(order);
+
+        amqpTemplate.convertAndSend("active",i++);
+        return 1;
     }
 
     @RequestMapping("set")
@@ -44,7 +54,5 @@ public class OrderController {
     public void setsql(){
         orderService.saveOrder();
     }
-
-
 
 }

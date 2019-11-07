@@ -7,7 +7,7 @@
     </insert>
 
     <select id="showGoods" resultType="goods">
-        select courseName,image,quantity,endtime from goods where username = #{username}
+        select courseName,image,quantity,endtime from goods
     </select>
 
 </mapper>

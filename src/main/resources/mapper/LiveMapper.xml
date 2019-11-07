@@ -8,10 +8,37 @@
          insert into live(username,title,image,name,crossfire,roomNumber) values(#{username},#{title},#{image},#{name},#{crossfire},#{roomNumber})
     </insert>
 
+
     <select id="selectRoom" resultType="Live" parameterType="String">
         select title,username,image,name,crossfire,roomNumber from live where username = #{username}
     </select>
 
+
+    <update id="updateRoom" parameterType="Live">
+        update live set
+        <trim suffixOverrides=",">
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="crossfire != null and crossfire != ''">
+                crossfire = #{crossfire},
+            </if>
+        </trim>
+
+        where username = #{username}
+
+    </update>
+
+
+    <select id="selectListRoom" resultType="Live">
+        select name,title,image,roomNumber from live
+    </select>
 
 
 </mapper>

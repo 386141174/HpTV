@@ -13,6 +13,17 @@ public class Goods {
     private String username;
     private long surplus;
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    private String token;
+
+
     public String getEndtime() {
         return endtime;
     }
