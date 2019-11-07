@@ -1,9 +1,7 @@
 package com.hp.controller;
 
 //import ch.qos.logback.core.util.FileUtil;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.extra.qrcode.QrCodeUtil;
-import cn.hutool.extra.qrcode.QrConfig;
+
 import com.hp.pojo.Goods;
 import com.hp.service.GoodsService;
 import com.hp.utils.JsonResult;
@@ -38,7 +36,6 @@ public class GoodsController {
                                   @RequestParam("username") String username){
         int count = goodsService.createGoods(courseName,image,quantity,endtime,username);
         return count == 1? new JsonResult(1,"success") : new JsonResult(0,"error");
-
     }
 
 
@@ -49,10 +46,7 @@ public class GoodsController {
      */
     @GetMapping("showGoods")
     public JsonResult showGoods(){
-
         Goods goods = goodsService.selectGoods();
        return goods != null ? new JsonResult(1,goods):new JsonResult(2,goods);
-
-
     }
 }

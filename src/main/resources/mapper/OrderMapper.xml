@@ -9,13 +9,16 @@
 
     <insert id="saveOrder">
 
-            insert into hp_orders(orderId, username, course)
+            insert into hp_orders(orderId, username, course,createTime)
         values
         <foreach collection="list" item="c" separator="," index="index">
-             (#{c.orderId},#{c.username},#{c.course})
+             (#{c.orderId},#{c.username},#{c.course},#{c.createTime})
         </foreach>
     </insert>
 
+    <delete id="deleteGoods" >
+        delete from goods
+    </delete>
 
 
 </mapper>

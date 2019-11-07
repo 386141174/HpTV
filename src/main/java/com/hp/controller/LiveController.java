@@ -20,13 +20,11 @@ public class LiveController {
 
 
     @PostMapping("create")
-    public JsonResult createRoom(   @RequestParam("title") String title,
-                                    @RequestParam("name") String name,
-                                    @RequestParam("username") String username,
-                                    @RequestParam("image") MultipartFile image,
-                                    @RequestParam("crossfire") String crossfire){
-
-
+    public JsonResult createRoom(@RequestParam("title") String title,
+                                 @RequestParam("name") String name,
+                                 @RequestParam("username") String username,
+                                 @RequestParam("image") MultipartFile image,
+                                 @RequestParam("crossfire") String crossfire){
         int count = liveService.createRoom(title,name,username,image,crossfire);
         return count == 1? new JsonResult(1,"success") : new JsonResult(2,"error");
 
@@ -71,6 +69,11 @@ public class LiveController {
     public JsonResult selectListRoom(){
         List<Live> lives = liveService.selectListRoom();
         return new JsonResult(1,lives);
+    }
+
+    @GetMapping("getRtmp")
+    public JsonResult getRtmp(@RequestParam("roomNumber") int roomNumber){
+        return new JsonResult(1,liveService.getRtmp(roomNumber));
     }
 
 

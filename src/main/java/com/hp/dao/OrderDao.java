@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface OrderDao {
     int saveOrder(List<Order> orders);
+    int deleteGoods();
 }

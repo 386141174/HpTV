@@ -14,5 +14,6 @@ public interface LiveDao {
     Live selectRoom(@Param("username") String username);
     int updateRoom(Live live);
     List<Live> selectListRoom();
+    Live getRtmp(@Param("roomNumber") int roonNumber);
 
 }

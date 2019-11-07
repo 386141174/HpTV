@@ -25,4 +25,8 @@ public class RabbitConf {
     public Binding bindingExchangeMessage(@Qualifier("message") Queue queueMessage,TopicExchange topicExchange){
         return BindingBuilder.bind(queueMessage).to(topicExchange).with("active.seckill");
     }
+
+
+
+
 }

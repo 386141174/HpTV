@@ -40,5 +40,9 @@
         select name,title,image,roomNumber from live
     </select>
 
+    <select id="getRtmp" resultType="Live">
+        select crossfire,name,username from live where roomNumber = #{roomNumber}
+    </select>
+
 
 </mapper>

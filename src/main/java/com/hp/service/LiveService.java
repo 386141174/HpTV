@@ -11,4 +11,5 @@ public interface LiveService {
     Live selectRoom(String username);
     int updateRoom(String title, String name, String username, MultipartFile image, String crossfire);
     List<Live> selectListRoom();
+    Live getRtmp(int roomNumber);
 }

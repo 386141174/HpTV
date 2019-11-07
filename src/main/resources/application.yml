@@ -38,6 +38,10 @@ spring:
     port: 5672
     username: admin
     password: admin
+    listener:
+      simple:
+        acknowledge-mode: manual
+
 
   #设置文件上传文件大小
   servlet:
@@ -52,7 +56,6 @@ spring:
 
 server:
   port: 8080
-
 
 
 ##配置外部访问文件（把上传的图片视频文件放到E盘下的fileUpload文件夹下）

@@ -122,4 +122,15 @@ public class LiveServiceImp implements LiveService {
     public List<Live> selectListRoom() {
         return liveDao.selectListRoom();
     }
+
+
+    /**
+     * 获取当前直播房间信息
+     * @param roomNumber
+     * @return
+     */
+    @Override
+    public Live getRtmp(int roomNumber) {
+        return liveDao.getRtmp(roomNumber);
+    }
 }

@@ -8,6 +8,15 @@ public class Order  implements Serializable {
     private String orderId;
     private String username;
     private String course;
+    private String createTime;
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
     public String getOrderId() {
         return orderId;
