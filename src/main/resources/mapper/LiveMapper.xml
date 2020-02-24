@@ -5,12 +5,12 @@
 <mapper namespace="com.hp.dao.LiveDao">
 
     <insert id="createRoom" parameterType="Live">
-         insert into live(username,title,image,name,crossfire,roomNumber) values(#{username},#{title},#{image},#{name},#{crossfire},#{roomNumber})
+         insert into live(username,title,image,name,crossfire,roomNumber,livetype) values(#{username},#{title},#{image},#{name},#{crossfire},#{roomNumber},#{liveType})
     </insert>
 
 
     <select id="selectRoom" resultType="Live" parameterType="String">
-        select title,username,image,name,crossfire,roomNumber from live where username = #{username}
+        select title,username,image,name,crossfire,roomNumber,livetype from live where username = #{username}
     </select>
 
 
@@ -44,5 +44,7 @@
         select crossfire,name,username from live where roomNumber = #{roomNumber}
     </select>
 
-
+    <select id="selectLiveType" parameterType="String" resultType="Live">
+        select title,livetype from live where username = #{username}
+    </select>
 </mapper>

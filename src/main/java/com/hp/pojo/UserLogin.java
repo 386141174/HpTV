@@ -7,11 +7,20 @@ public class UserLogin implements Serializable {
     private int id;
     private String username;
     private String password;
-
+    private String token;
     private String remark;
     private String realName;
     private String sex;
     private String idCard;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     private String tel;
     private  String email;
     private String userType;
@@ -102,6 +111,7 @@ public class UserLogin implements Serializable {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
                 ", remark='" + remark + '\'' +
                 ", realName='" + realName + '\'' +
                 ", sex='" + sex + '\'' +

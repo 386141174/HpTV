@@ -2,6 +2,7 @@ package com.hp.dao;
 
 import com.hp.pojo.Video;
 import com.hp.utils.Info;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,12 +11,16 @@ import java.util.List;
 public interface VideoDao {
 
     /**插入视频*/
-    public int inserVideo(Video video);
+    int inserVideo(Video video);
 
 
     /**总记录数*/
-    public Integer selectVideoCount(Info info);
+    Integer selectVideoCount(Info info);
 
     /**结果集*/
-    public List<Video> selAllOrders(Info info);
+    List<Video> selAllOrders(Info info);
+
+    //搜索视频
+    List<Video> queryVideo(Info info);
+    int selectCount(@Param("videoname") String upVideoName);
 }

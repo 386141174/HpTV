@@ -8,6 +8,15 @@ public class Live {
     private String image;
     private String crossfire;
     private int roomNumber;
+    private String liveType;
+
+    public String getLiveType() {
+        return liveType;
+    }
+
+    public void setLiveType(String liveType) {
+        this.liveType = liveType;
+    }
 
     public int getRoomNumber() {
         return roomNumber;

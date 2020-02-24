@@ -2,6 +2,7 @@ package com.hp.controller;
 
 //import ch.qos.logback.core.util.FileUtil;
 
+import com.hp.dao.GoodsDao;
 import com.hp.pojo.Goods;
 import com.hp.service.GoodsService;
 import com.hp.utils.JsonResult;
@@ -18,6 +19,9 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+
+    @Autowired
+    private GoodsDao goodsDao;
 
     /**
      * 创建活动商品
@@ -49,4 +53,10 @@ public class GoodsController {
         Goods goods = goodsService.selectGoods();
        return goods != null ? new JsonResult(1,goods):new JsonResult(2,goods);
     }
+
+
+
+
+
+
 }

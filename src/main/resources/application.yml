@@ -32,7 +32,7 @@ spring:
   redis:
     host: 118.31.68.233
     port: 6379
-    timeout: 10000
+    timeout: 50000
   rabbitmq:
     host: 118.31.68.233
     port: 5672
@@ -46,8 +46,8 @@ spring:
   #设置文件上传文件大小
   servlet:
     multipart:
-      max-file-size: 100000000
-      max-request-size: 100000000
+      max-file-size: 500MB
+      max-request-size: 500MB
 
 #  resources:
 #    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:D://img//

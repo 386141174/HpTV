@@ -5,8 +5,8 @@
 <mapper namespace="com.hp.dao.VideoDao">
     <!--上传视频-->
     <insert id="inserVideo" parameterType="com.hp.pojo.Video" >
-        insert into video (videoName,videoUrl,videoPath,picName,picUrl,picPath,filetype,upVideoName)
-         values (#{videoName},#{videoUrl},#{videoPath},#{picName},#{picUrl},#{picPath},#{filetype},#{upVideoName})
+        insert into video (videoName,videoUrl,videoPath,picName,picUrl,picPath,filetype,upVideoName,videodescribe,videoType,location,username,livetype,ifopen)
+         values (#{videoName},#{videoUrl},#{videoPath},#{picName},#{picUrl},#{picPath},#{filetype},#{upVideoName},#{videodescribe},#{videoType},#{location},#{username},#{livetype},#{ifopen})
     </insert>
     <!--视频总数-->
     <select id="selectVideoCount" parameterType="com.hp.utils.Info" resultType="Integer">
@@ -24,13 +24,21 @@
     <select id="selAllOrders" parameterType="com.hp.utils.Info" resultType="com.hp.pojo.Video">
         select * from video
         <where>
-            <if test="filetype!=null and filetype!=''">
-                filetype=#{filetype}
-            </if>
-            <if test="videoname!=null and videoname!=''">
-                and upVideoName like '%${videoname}%'
-            </if>
-        </where>
-         limit #{startRow},#{size}
+        <if test="filetype!=null and filetype!=''">
+            filetype=#{filetype}
+        </if>
+        <if test="videoname!=null and videoname!=''">
+            and upVideoName like '%${videoname}%'
+        </if>
+    </where>
+    limit #{startRow},#{size}
+    </select>
+
+    <select id="queryVideo" resultType="Video" parameterType="String">
+        select videoName,upVideoName from video where upVideoName like '%${videoname}%' order by videoType limit #{startRow},#{size}
+    </select>
+
+    <select id="selectCount" resultType="int" parameterType="String">
+        select count(1) from video where upVideoName like '%${videoname}%'
     </select>
 </mapper>

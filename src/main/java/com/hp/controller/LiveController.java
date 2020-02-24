@@ -1,5 +1,6 @@
 package com.hp.controller;
 
+import cn.hutool.core.util.RandomUtil;
 import com.hp.pojo.Live;
 import com.hp.service.LiveService;
 import com.hp.utils.JsonResult;
@@ -61,6 +62,8 @@ public class LiveController {
     }
 
 
+
+
     /**
      * 查询所有直播间信息
      * @return
@@ -76,5 +79,9 @@ public class LiveController {
         return new JsonResult(1,liveService.getRtmp(roomNumber));
     }
 
-
+    @GetMapping("getLiveType")
+    public JsonResult selectLiveType(@RequestParam("username") String username){
+        List<Live> live = liveService.selectLiveType(username);
+        return new JsonResult(1,live);
+    }
 }

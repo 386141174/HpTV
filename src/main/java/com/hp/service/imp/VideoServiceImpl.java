@@ -8,6 +8,8 @@ import com.hp.utils.PageObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VideoServiceImpl implements VideoService {
 
@@ -45,6 +47,26 @@ public class VideoServiceImpl implements VideoService {
         /**结果集*/
         pageObject.setItems(videoDao.selAllOrders(info));
 
+        return pageObject;
+    }
+
+
+    @Override
+    public PageObject<Video> queryVideo(Info info) {
+
+        int startPage = info.getStartRow();
+        int count = videoDao.selectCount(info.getVideoname());
+        int size = 12;
+        int pageSize = count/size;
+        if (count % size != 0) {
+            pageSize++;
+        }
+        info.setStartRow((startPage - 1) * size);
+        info.setSize(size);
+        List<Video> videos = videoDao.queryVideo(info);
+        PageObject<Video> pageObject = new PageObject<>();
+        pageObject.setItems(videos);
+        pageObject.setPageCount(pageSize);
         return pageObject;
     }
 }

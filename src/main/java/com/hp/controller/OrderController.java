@@ -86,5 +86,9 @@ public class OrderController {
 //    }
 
 
+    @GetMapping("selectOrder")
+    public JsonResult selectOrder(){
+        return new JsonResult(1,orderService.selectOrder());
+    }
 
 }

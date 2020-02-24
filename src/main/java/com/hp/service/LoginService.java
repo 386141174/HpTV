@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface LoginService {
 
-    public UserLogin Login(String username);
+    UserLogin Login(String username);
     int selectbyUsername(String username);
-    boolean addUser(UserLogin userLogin);
+    int addUser(UserLogin userLogin);
     boolean updateRemarkByUsername(String remark, String username);
-
-    List<UserPower> selectUserPower(UserPower userPower);
+    String selectUserPower(UserPower userPower);
+    int createUser(UserLogin userLogin);
+    String selectUserToken(UserLogin userLogin);
 
 }

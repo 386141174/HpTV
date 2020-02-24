@@ -43,12 +43,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public int createGoods(String courseName, MultipartFile image, int quantity, String endtime,String username) {
         RedisKey redisKey = new RedisKey();
-        QrCodeUtil.generate(//
-                "http://114.116.41:9528/mobile", //二维码内容
-                QrConfig.create().setImg("../../../../static/503d269759ee3d6dbf598fca4e166d224f4ade10.png"), //附带logo
-                FileUtil.file("d:/file/active.jpg")//写出到的文件
-        );
-
         List<String> list = new ArrayList<>();
         String imageid = liveServiceImp.saveImage(image);
         Goods goods = new Goods();

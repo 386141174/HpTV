@@ -68,4 +68,10 @@ public class OrderServiceImpl implements OrderService {
 
         }
     }
+
+
+    @Override
+    public List<Order> selectOrder() {
+        return orderDao.selectOrder();
+    }
 }

@@ -10,17 +10,17 @@ import org.bytedeco.javacpp.opencv_core;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.Frame;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -36,8 +36,17 @@ public class VideoController {
     @PostMapping(value = "/uploadFile")
     public JsonResult uploadFile(@RequestParam("fileType") String fileType,
                                  @RequestParam("upVideoName") String upVideoName,
-                                 @RequestParam("fileName") MultipartFile file) {
+                                 @RequestParam("fileName") MultipartFile file,
+                                 @RequestParam("describe") String describe,
+                                 @RequestParam("videoType") String videoType,
+                                 @RequestParam("username") String username,
+                                 @RequestParam("liveType") String liveType,
+                                 @RequestParam("ifopen") boolean ifopen) throws Exception{
 
+        int open = 0;
+        if (!ifopen) {
+            open = 1;
+        }
 
         //判断文件是否为空
         if (file.isEmpty()) {
@@ -61,15 +70,15 @@ public class VideoController {
         String picName=uuid+".jpg";
         System.out.println("图片文件名称-----"+videoName);
         //视频在本地存放路径
-        String videopath = "M:/file/" +videoName;
+        String videopath = "D:/file/" +videoName;
         File  videoFile= new File(videopath);
         System.out.println(videopath);
         //图片在本地存放路径
-        String picPath="M:/pic/"+picName;
+        String picPath="D:/pic/"+picName;
         File picFile=new File(picPath);
         System.out.println(picPath);
         //保存视频
-        try {
+//        try {
             file.transferTo(videoFile);
             long start = System.currentTimeMillis();
             FFmpegFrameGrabber ff = new FFmpegFrameGrabber(videopath);
@@ -98,14 +107,16 @@ public class VideoController {
             ff.stop();
             System.out.println(System.currentTimeMillis() - start);
 
-            String videoUrl="http://localhost:8080/video/"+videoName;
+            String videoUrl="http://localhost:8080/file/"+videoName;
             String picUrl="http://localhost:8080/pic/"+picName;
             Video video=new Video(videoName,videoUrl,videopath,
-                    picName,picUrl,picPath,fileType,upVideoName);
+                    picName,picUrl,picPath,fileType,upVideoName,username,liveType,open);
+            video.setDescribe(describe);
+            video.setVideoType(videoType);
             int jieguo= videoService.inserVideo(video);
-        } catch (Exception e) {
-            return new JsonResult(0,"上传失败");
-        }
+//        } catch (Exception e) {
+//            return new JsonResult(0,"上传失败");
+//        }
 
         return new JsonResult(1,"上传成功");
     }
@@ -115,6 +126,18 @@ public class VideoController {
     public JsonResult selectVideo(Info info){
         System.out.println(info);
         PageObject<Video> pageObject= videoService.selectVideo(info);
+
         return new JsonResult(1,pageObject);
     }
+
+    @GetMapping("query")
+    public JsonResult queryVideo(@RequestParam("keyword") String keyword,
+                                 @RequestParam("page") int page) {
+        Info info = new Info();
+        info.setStartRow(page);
+        info.setVideoname(keyword);
+        PageObject<Video> videoPageObject = videoService.queryVideo(info);
+        return videoPageObject != null ? new JsonResult(1,videoPageObject) : new JsonResult(0,"error");
+    }
+
 }

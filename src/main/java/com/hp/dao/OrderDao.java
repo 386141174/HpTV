@@ -11,4 +11,5 @@ import java.util.List;
 public interface OrderDao {
     int saveOrder(List<Order> orders);
     int deleteGoods();
+    List<Order> selectOrder();
 }

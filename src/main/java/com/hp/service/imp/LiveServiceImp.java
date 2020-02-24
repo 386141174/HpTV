@@ -1,6 +1,7 @@
 package com.hp.service.imp;
 
 
+import cn.hutool.core.util.RandomUtil;
 import com.hp.dao.LiveDao;
 import com.hp.pojo.Live;
 import com.hp.service.LiveService;
@@ -52,6 +53,8 @@ public class LiveServiceImp implements LiveService {
         int roomNumber = random.nextInt(9999-1000+1)+1000;
         System.out.println(roomNumber);
         live.setRoomNumber(roomNumber);
+        String s = RandomUtil.randomString(4);
+        live.setLiveType(s);
         int count = liveDao.createRoom(live);
         return count;
     }
@@ -132,5 +135,10 @@ public class LiveServiceImp implements LiveService {
     @Override
     public Live getRtmp(int roomNumber) {
         return liveDao.getRtmp(roomNumber);
+    }
+
+    @Override
+    public List<Live> selectLiveType(String username) {
+        return liveDao.selectLiveType(username);
     }
 }

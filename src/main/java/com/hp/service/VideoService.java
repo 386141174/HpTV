@@ -11,4 +11,6 @@ public interface VideoService {
 
     /**查询视频*/
     public PageObject<Video> selectVideo(Info info);
+
+    PageObject<Video> queryVideo(Info info);
 }

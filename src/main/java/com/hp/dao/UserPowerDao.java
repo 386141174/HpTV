@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface UserPowerDao {
-    List<UserPower> selectUserPower(UserPower userPower);
+    String selectUserPower(UserPower userPower);
 }

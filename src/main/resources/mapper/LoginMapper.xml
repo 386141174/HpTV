@@ -4,7 +4,7 @@
 
     <!--根据用户名查找用户名和密码-->
     <select id="Login"   resultType="com.hp.pojo.UserLogin">
-        select id,username ,password from userlogin where username=#{username}
+        select id,username ,password,token from userlogin where username=#{username}
     </select>
 
     <!--根据用户名查询数据库中是否已有用户名记录-->
@@ -16,7 +16,7 @@
     <!--添加用户名和密码和其他详细信息-->
     <insert id="addUser" parameterType="com.hp.pojo.UserLogin">
         insert into userlogin(username,password,realName,sex,idCard,tel,email,token)
-        value(#{username},#{password},#{realName},#{sex},#{idCard},#{tel},#{email},#{userType})
+        value(#{username},#{password},#{realName},#{sex},#{idCard},#{tel},#{email},#{token  })
     </insert>
 
     <!-- 添加用户备注密码-->
@@ -25,8 +25,15 @@
     </update>
 
     <!--//查询用户的token-->
-    <select id="selectUser" resultType="com.hp.pojo.UserLogin">
-        select token from userlogin where username = #{userName} and password = #{passWord}
+    <select id="selectUserToken" resultType="String" parameterType="String">
+        select token from userlogin where username = #{username} and password = #{password}
     </select>
+
+
+    <insert id="createUser" parameterType="UserLogin">
+        insert into userlogin(username, password, token) values (#{username},#{password},#{token})
+    </insert>
+
+
 
 </mapper>
