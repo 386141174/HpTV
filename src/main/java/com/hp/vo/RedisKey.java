@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 public class RedisKey {
 
     //创建订单时redis的key
-    public String ORDER_KEY = "rush to purchase";
+    public static String ORDER_KEY = "rush to purchase";
     //创建活动时
-    public String GOODS_KEY = "Start of activity";
+    public static String GOODS_KEY = "Start of activity";
 }

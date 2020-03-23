@@ -84,4 +84,18 @@ public class LiveController {
         List<Live> live = liveService.selectLiveType(username);
         return new JsonResult(1,live);
     }
+
+    @GetMapping("queryBuyLive")
+    public JsonResult queryBuyLive(@RequestParam("liveType") String liveType,@RequestParam("userName") String userName) {
+        int count = liveService.queryBuyLive(liveType,userName);
+        return count != 0? new JsonResult(1,"success") : new JsonResult(0,"error");
+    }
+
+
+    @GetMapping("queryStudentCourse")
+    public JsonResult queryStudentCourse(@RequestParam("username") String username) {
+
+        List<Live> liveList = liveService.queryStudentCourse(username);
+        return new JsonResult(1,liveList);
+    }
 }

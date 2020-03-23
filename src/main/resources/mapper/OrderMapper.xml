@@ -9,10 +9,10 @@
 
     <insert id="saveOrder">
 
-            insert into hp_orders(orderId, username, course,createTime)
+            insert into hp_orders(orderId, username, course,createTime,order_roomNumber,order_amount,teacher,order_status,order_liveType)
         values
         <foreach collection="list" item="c" separator="," index="index">
-             (#{c.orderId},#{c.username},#{c.course},#{c.createTime})
+             (#{c.orderId},#{c.username},#{c.course},#{c.createTime},#{c.order_roomNumber},#{c.order_amount},#{c.teacher},#{c.order_status},#{c.order_liveType})
         </foreach>
     </insert>
 
@@ -25,5 +25,78 @@
         select * from hp_orders
     </select>
 
+    <insert id="payOrder" parameterType="Order">
+        insert into
+            hp_orders(orderid, course, order_amount, order_videoType, order_liveType, username, createTime, teacherUser)
+        values (#{orderId},#{course},#{order_amount},#{order_videoType},#{order_liveType},#{username},#{createTime},{#teacherUser})
+    </insert>
 
+    <select id="queryRoom" parameterType="String" resultType="int" >
+        select roomNumber from live where username = #{username}
+    </select>
+
+    <select id="queryOrderByUsername" resultType="order" parameterType="String">
+        select * from hp_orders where username = #{username}
+    </select>
+
+    <delete id="deleteOrder" parameterType="String">
+        delete from hp_orders where orderid = #{orderid}
+    </delete>
+
+
+
+    <select id="selectTeacherByUsername" parameterType="String" resultType="String">
+        select teacher from hp_orders where username = #{username}
+    </select>
+
+    <select id="selectVideoType" resultType="String">
+        select videoType from video  where teachername in
+            <foreach collection="set" index="index" item="s" separator="," open="(" close=")">
+                #{s}
+            </foreach>
+    </select>
+
+    <select id="recommendVideo" resultType="video">
+        select
+            *
+        from
+            video
+        where videoType in
+            <foreach collection="set" index="index" item="s" separator="," open="(" close=")">
+                #{s}
+            </foreach>
+        order by createTime desc limit 0,10
+    </select>
+
+    <select id="ifBuy" parameterType="String" resultType="int">
+        select count(1) from hp_orders where teacher = #{teacherName} and order_liveType = #{order_liveType} and username = #{userName}
+    </select>
+
+    <select id="queryStudentInfo" parameterType="String" resultMap="studentinfo">
+       select
+            distinct u.id,u.username,u.idCard
+        from
+            userlogin u
+        left join
+            hp_orders h
+        on
+            u.username = h.username
+        where
+            h.teacher in (select
+                                DISTINCT username
+                            from
+                                hp_orders
+                            where
+                                teacher = #{teacher})
+    </select>
+
+    <resultMap id="studentinfo" type="Order">
+<!--        <id property="orderId" column="id"/>-->
+        <association property="userLogin" javaType="UserLogin">
+            <result property="id" column="id"/>
+            <result property="username" column="username"/>
+            <result property="idCard" column="idCard"/>
+        </association>
+
+    </resultMap>
 </mapper>

@@ -3,12 +3,14 @@
 <mapper namespace="com.hp.dao.GoodsDao">
 
     <insert id="createGoods" parameterType="Goods">
-        insert into goods(courseName, image, quantity, endtime,username) values (#{courseName},#{image},#{quantity},#{endtime},#{username})
+        insert into goods(courseName, image, quantity, endtime,username,amount,liveType) values (#{courseName},#{image},#{quantity},#{endtime},#{username},#{amount},#{liveType})
     </insert>
 
     <select id="showGoods" resultType="goods">
-        select courseName,image,quantity,endtime from goods
+        select courseName,image,quantity,endtime,amount,username,liveType from goods
     </select>
+
+
 
 
 

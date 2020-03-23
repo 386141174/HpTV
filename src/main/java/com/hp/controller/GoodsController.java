@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
 
 
 @RequestMapping("goods")
@@ -37,8 +38,10 @@ public class GoodsController {
                                   @RequestParam("image")MultipartFile image,
                                   @RequestParam("endtime") String endtime,
                                   @RequestParam("quantity") int quantity,
-                                  @RequestParam("username") String username){
-        int count = goodsService.createGoods(courseName,image,quantity,endtime,username);
+                                  @RequestParam("username") String username,
+                                  @RequestParam("amount") BigDecimal amount,
+                                  @RequestParam("liveType") String liveType){
+        int count = goodsService.createGoods(courseName,image,quantity,endtime,username,amount,liveType);
         return count == 1? new JsonResult(1,"success") : new JsonResult(0,"error");
     }
 

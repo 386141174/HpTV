@@ -13,4 +13,6 @@ public interface LiveService {
     List<Live> selectListRoom();
     Live getRtmp(int roomNumber);
     List<Live> selectLiveType(String username);
+    int queryBuyLive(String liveType,String userName);
+    List<Live> queryStudentCourse(String username);
 }

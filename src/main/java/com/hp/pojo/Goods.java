@@ -1,6 +1,7 @@
 package com.hp.pojo;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Goods {
@@ -12,6 +13,25 @@ public class Goods {
     private String endtime;
     private String username;
     private long surplus;
+    private BigDecimal amount;
+    private String liveType;
+
+
+    public String getLiveType() {
+        return liveType;
+    }
+
+    public void setLiveType(String liveType) {
+        this.liveType = liveType;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
     public String getToken() {
         return token;

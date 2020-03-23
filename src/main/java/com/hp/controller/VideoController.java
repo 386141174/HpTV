@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.websocket.server.PathParam;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,7 +47,7 @@ public class VideoController {
                                  @RequestParam("ifopen") boolean ifopen) throws Exception{
 
         int open = 0;
-        if (!ifopen) {
+        if (ifopen) {
             open = 1;
         }
 
@@ -113,6 +116,9 @@ public class VideoController {
                     picName,picUrl,picPath,fileType,upVideoName,username,liveType,open);
             video.setDescribe(describe);
             video.setVideoType(videoType);
+            Date date = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            video.setCreateTime(dateFormat.format(date));
             int jieguo= videoService.inserVideo(video);
 //        } catch (Exception e) {
 //            return new JsonResult(0,"上传失败");
@@ -140,4 +146,32 @@ public class VideoController {
         return videoPageObject != null ? new JsonResult(1,videoPageObject) : new JsonResult(0,"error");
     }
 
+
+    @GetMapping("selectByVideoType")
+    public JsonResult selectByVideoType(@RequestParam("videoType") String videoType) {
+        List<Video> videoList = videoService.selectVideoType(videoType);
+        return new JsonResult(1,videoList);
+    }
+
+    @GetMapping("queryTeacherVideo")
+    public JsonResult queryTeacherVideo(@RequestParam("teachername") String teachername) {
+        return new JsonResult(1,videoService.queryTeacherVideo(teachername));
+    }
+
+    @GetMapping("deleteVideo")
+    public JsonResult deleteVideo(@RequestParam("videoId") int videoId){
+        int count = videoService.deleteVideo(videoId);
+        return count != 0 ? new JsonResult(1,count) : new JsonResult(0,"error");
+    }
+
+    @GetMapping("replay")
+    public JsonResult replay(@RequestParam("teachername") String teachername,
+                             @RequestParam("livetype") String livetype) {
+        Video video = new Video();
+        video.setTeachername(teachername);
+        video.setLivetype(livetype);
+        List<Video> list = videoService.replay(video);
+        return new JsonResult(1,list);
+
+    }
 }

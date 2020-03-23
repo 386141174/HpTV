@@ -141,4 +141,15 @@ public class LiveServiceImp implements LiveService {
     public List<Live> selectLiveType(String username) {
         return liveDao.selectLiveType(username);
     }
+
+    @Override
+    public int queryBuyLive(String liveType, String userName) {
+
+        return liveDao.queryBuyLive(liveType,userName);
+    }
+
+    @Override
+    public List<Live> queryStudentCourse(String username) {
+        return liveDao.queryStudentCourse(username);
+    }
 }

@@ -27,14 +27,24 @@ public class Video {
     //视频描述
     private String videodescribe;
     //用户名
-    private String username;
+    private String teachername;
     //视频内容分类
     private String videoType;
     //首页位置
     private int location;
     private String livetype;
 
+
     private int ifopen;
+    private String createTime;
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
     public int getIfopen() {
         return ifopen;
@@ -52,13 +62,14 @@ public class Video {
         this.livetype = livetype;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTeachername() {
+        return teachername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTeachername(String teachername) {
+        this.teachername = teachername;
     }
+
     public String getDescribe() {
         return videodescribe;
     }
@@ -98,7 +109,7 @@ public class Video {
         this.picPath = picPath;
         this.filetype = filetype;
         this.upVideoName = upVideoName;
-        this.username = username;
+        this.teachername = username;
         this.livetype = liveType;
         this.ifopen = open;
     }

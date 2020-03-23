@@ -8,11 +8,9 @@
          insert into live(username,title,image,name,crossfire,roomNumber,livetype) values(#{username},#{title},#{image},#{name},#{crossfire},#{roomNumber},#{liveType})
     </insert>
 
-
     <select id="selectRoom" resultType="Live" parameterType="String">
         select title,username,image,name,crossfire,roomNumber,livetype from live where username = #{username}
     </select>
-
 
     <update id="updateRoom" parameterType="Live">
         update live set
@@ -35,9 +33,8 @@
 
     </update>
 
-
     <select id="selectListRoom" resultType="Live">
-        select name,title,image,roomNumber from live
+        select name,title,image,roomNumber,username,livetype from live
     </select>
 
     <select id="getRtmp" resultType="Live">
@@ -47,4 +44,29 @@
     <select id="selectLiveType" parameterType="String" resultType="Live">
         select title,livetype from live where username = #{username}
     </select>
+
+    <select id="queryBuyLive" parameterType="String" resultType="int">
+        select count(1) from hp_orders where order_liveType = #{liveType} and username = #{userName}
+    </select>
+
+    <select id="queryStudentCourse" parameterType="String" resultType="Live">
+        select
+            distinct l.title,l.image,l.roomNumber,l.livetype,l.username
+        from
+            live l
+                join
+            hp_orders h
+                on
+            l.livetype = h.order_liveType
+        where
+            h.order_liveType in (select distinct order_liveType from hp_orders where username = #{username})
+    </select>
+
+<!--    <resultMap id="queryStudentCourse" type="Live">-->
+<!--        <result property="title" column="title"/>-->
+<!--        <result property="image" column="image"/>-->
+<!--        <result property="roomNumber" column="roomNumber"/>-->
+<!--        <result property="livetype" column="livetype"/>-->
+<!--    </resultMap>-->
+
 </mapper>

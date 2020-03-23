@@ -5,8 +5,8 @@
 <mapper namespace="com.hp.dao.VideoDao">
     <!--上传视频-->
     <insert id="inserVideo" parameterType="com.hp.pojo.Video" >
-        insert into video (videoName,videoUrl,videoPath,picName,picUrl,picPath,filetype,upVideoName,videodescribe,videoType,location,username,livetype,ifopen)
-         values (#{videoName},#{videoUrl},#{videoPath},#{picName},#{picUrl},#{picPath},#{filetype},#{upVideoName},#{videodescribe},#{videoType},#{location},#{username},#{livetype},#{ifopen})
+        insert into video (videoName,videoUrl,videoPath,picName,picUrl,picPath,filetype,upVideoName,videodescribe,videoType,location,teachername,livetype,ifopen,createTime)
+         values (#{videoName},#{videoUrl},#{videoPath},#{picName},#{picUrl},#{picPath},#{filetype},#{upVideoName},#{videodescribe},#{videoType},#{location},#{teachername},#{livetype},#{ifopen},#{createTime})
     </insert>
     <!--视频总数-->
     <select id="selectVideoCount" parameterType="com.hp.utils.Info" resultType="Integer">
@@ -35,10 +35,30 @@
     </select>
 
     <select id="queryVideo" resultType="Video" parameterType="String">
-        select videoName,upVideoName from video where upVideoName like '%${videoname}%' order by videoType limit #{startRow},#{size}
+        select videoName,upVideoName,picUrl,videoUrl,videoType,videodescribe from video where upVideoName like '%${videoname}%' and ifopen = 0 order by videoType limit #{startRow},#{size}
     </select>
 
     <select id="selectCount" resultType="int" parameterType="String">
-        select count(1) from video where upVideoName like '%${videoname}%'
+        select count(1) from video where upVideoName like '%${videoname}%' and ifopen = 0
     </select>
+
+
+
+    <select id="selectVideoType" parameterType="String" resultType="Video">
+        select * from video where videoType like '%${videoType}%'
+    </select>
+
+
+    <select id="queryTeacherVideo" parameterType="String" resultType="Video">
+        select id,upVideoName,videoType,videodescribe,createTime from video where teachername = #{teachername}
+    </select>
+
+    <delete id="deleteVideo" parameterType="int">
+        delete from video where id = #{videoId}
+    </delete>
+
+    <select id="replayCourse" parameterType="video" resultType="video">
+        select * from video where livetype = #{livetype} and teachername = #{teachername}
+    </select>
+
 </mapper>

@@ -30,17 +30,18 @@ spring:
         login-username: admin
         login-password: admin
   redis:
-    host: 118.31.68.233
+    host: 127.0.0.1
     port: 6379
     timeout: 50000
+
   rabbitmq:
-    host: 118.31.68.233
+    host: 129.211.67.13
     port: 5672
     username: admin
     password: admin
     listener:
       simple:
-        acknowledge-mode: manual
+        acknowledge-mode: NONE
 
 
   #设置文件上传文件大小
@@ -64,7 +65,6 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.hp.pojo
   configuration:
-    mapUnderscoreToCamelCase: true
     logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
     mapperLocations: classpath:com/hp/resources/**/*.xml
 

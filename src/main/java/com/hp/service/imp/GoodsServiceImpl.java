@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,13 @@ public class GoodsServiceImpl implements GoodsService {
      * @return
      */
     @Override
-    public int createGoods(String courseName, MultipartFile image, int quantity, String endtime,String username) {
+    public int createGoods(String courseName,
+                           MultipartFile image,
+                           int quantity,
+                           String endtime,
+                           String username,
+                           BigDecimal amount,
+                           String liveType) {
         RedisKey redisKey = new RedisKey();
         List<String> list = new ArrayList<>();
         String imageid = liveServiceImp.saveImage(image);
@@ -51,6 +59,8 @@ public class GoodsServiceImpl implements GoodsService {
         goods.setImage(imageid);
         goods.setQuantity(quantity);
         goods.setUsername(username);
+        goods.setAmount(amount);
+        goods.setLiveType(liveType);
         int count = goodsDao.createGoods(goods);
         if (count == 1){
             for (int i = 0;i < quantity;i++){

@@ -61,6 +61,7 @@ public class VideoServiceImpl implements VideoService {
         if (count % size != 0) {
             pageSize++;
         }
+        System.out.println(pageSize);
         info.setStartRow((startPage - 1) * size);
         info.setSize(size);
         List<Video> videos = videoDao.queryVideo(info);
@@ -68,5 +69,28 @@ public class VideoServiceImpl implements VideoService {
         pageObject.setItems(videos);
         pageObject.setPageCount(pageSize);
         return pageObject;
+    }
+
+
+    @Override
+    public List<Video> selectVideoType(String videoType) {
+        return videoDao.selectVideoType(videoType);
+    }
+
+    @Override
+    public List<Video> queryTeacherVideo(String teachername) {
+        return videoDao.queryTeacherVideo(teachername);
+    }
+
+    @Override
+    public int deleteVideo(int videoId) {
+
+        return videoDao.deleteVideo(videoId);
+    }
+
+    @Override
+    public List<Video> replay(Video video) {
+
+        return videoDao.replayCourse(video);
     }
 }

@@ -16,4 +16,6 @@ public interface LiveDao {
     List<Live> selectListRoom();
     Live getRtmp(@Param("roomNumber") int roonNumber);
     List<Live> selectLiveType(String username);
+    int queryBuyLive(@Param("liveType") String liveType,@Param("userName") String userName);
+    List<Live> queryStudentCourse(@Param("username") String username);
 }

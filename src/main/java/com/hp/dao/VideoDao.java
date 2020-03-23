@@ -13,7 +13,6 @@ public interface VideoDao {
     /**插入视频*/
     int inserVideo(Video video);
 
-
     /**总记录数*/
     Integer selectVideoCount(Info info);
 
@@ -23,4 +22,8 @@ public interface VideoDao {
     //搜索视频
     List<Video> queryVideo(Info info);
     int selectCount(@Param("videoname") String upVideoName);
+    List<Video> selectVideoType(@Param("videoType") String videoType);
+    List<Video> queryTeacherVideo(@Param("teachername") String teachername);
+    int deleteVideo(@Param("videoId") int deleteVideo);
+    List<Video> replayCourse(Video video);
 }
