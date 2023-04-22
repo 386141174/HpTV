@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hp.dao.UserEvaluateDao">
+
+
+    <select id="pageSearch" resultType="com.hp.pojo.ServiceEvaluateDetails">
+        select
+        p.user_name
+        p.phone
+        p.area
+        p.floor_unit
+        p.start_time
+        p.end_time
+        p.service_personnel
+        p.service_personnel_id
+        u.image
+        p.service_content
+        p.user_id
+        p.service_number
+        p.service_value
+        p.time,
+        u.service_number
+        u.service_type
+        u.evaluate
+        from
+        publish_service p
+        left join user_evaluate u on p.id = u.publish_service_id
+        <where>
+            <if test="search != null and search != ''">
+                area_name like CONCAT('%',#{search},'%')
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="selectAreaNameCount" resultType="integer">
+        select count(1) from territory where area_name = #{areaName}
+    </select>
+
+
+</mapper>

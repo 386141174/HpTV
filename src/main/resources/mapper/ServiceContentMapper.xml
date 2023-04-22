@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hp.dao.ServiceContentDao">
+
+
+    <select id="pageSearch" resultType="com.hp.pojo.ServiceContent">
+        select
+        s.id,
+        s.area_name,
+        s.community_id,
+        s.community_name,
+        s.phone,
+        u.realname as principal,
+        s.service_name,
+        s.service_value,
+        s.address,
+        s.time
+        from
+            service_content s
+            left join userlogin u on s.principal = u.id
+        <where>
+            <if test="search != null and  search != ''">
+                area_name like CONCAT('%',#{search},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="serviceByArea" resultType="com.hp.pojo.ServiceContent">
+        select * from service_content where community_id = #{area}
+    </select>
+
+
+
+</mapper>

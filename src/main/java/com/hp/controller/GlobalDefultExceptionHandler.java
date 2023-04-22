@@ -1,6 +1,8 @@
 package com.hp.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -14,10 +16,13 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalDefultExceptionHandler {
+    private static final Logger logger = LoggerFactory.getLogger(GlobalDefultExceptionHandler.class);
 
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Map errorHandler(Exception ex) {
+        logger.error("内部异常",ex);
+
         Map map = new HashMap();
         map.put("state", 40001);
         map.put("msg", ex.getMessage());

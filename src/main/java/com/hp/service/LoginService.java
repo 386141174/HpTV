@@ -14,5 +14,5 @@ public interface LoginService {
     String selectUserPower(UserPower userPower);
     int createUser(UserLogin userLogin);
     String selectUserToken(UserLogin userLogin);
-
+    String getSaltMD5(String password);
 }

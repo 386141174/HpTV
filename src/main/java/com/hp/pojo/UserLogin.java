@@ -1,124 +1,51 @@
 package com.hp.pojo;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@TableName(value = "userlogin")
 public class UserLogin implements Serializable {
     private static final long serialVersionUID=1L;
-    private int id;
+
+    @TableId(value="id",type= IdType.AUTO)
+    private Integer id;
+    @TableField(value="username")
     private String username;
+    @TableField(value="password")
     private String password;
+    @TableField(value="token")
     private String token;
+    @TableField(value="remark")
     private String remark;
+    @TableField(value="realName")
     private String realName;
-    private String sex;
+    @TableField(value="sex")
+    private Integer sex;
+    @TableField(value="idCard")
     private String idCard;
 
-    public String getToken() {
-        return token;
-    }
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date createTime;
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+    private Integer state;
+
+
 
     private String tel;
     private  String email;
-    private String userType;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    @Override
-    public String toString() {
-        return "UserLogin{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", token='" + token + '\'' +
-                ", remark='" + remark + '\'' +
-                ", realName='" + realName + '\'' +
-                ", sex='" + sex + '\'' +
-                ", idCard='" + idCard + '\'' +
-                ", tel='" + tel + '\'' +
-                ", email='" + email + '\'' +
-                ", userType='" + userType + '\'' +
-                '}';
-    }
 }

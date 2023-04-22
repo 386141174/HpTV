@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hp.dao.TerritoryDao">
+
+
+    <select id="pageSearch" resultType="com.hp.pojo.Territory">
+        select
+               t.id,
+            t.serial_number,
+               t.area_name,
+            t.community_name,
+            t.address       ,
+            t.star_scope    ,
+            t.end_scope     ,
+            t.phone,
+            time,
+            u.realName as principal
+        from
+            territory t
+            left join userlogin u on t.principal = u.id
+        <where>
+            <if test="search != null and search != ''">
+                area_name like CONCAT('%',#{search},'%')
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="selectAreaNameCount" resultType="integer">
+        select count(1) from territory where area_name = #{areaName}
+    </select>
+
+
+</mapper>

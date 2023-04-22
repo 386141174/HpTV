@@ -34,6 +34,18 @@
         insert into userlogin(username, password, token) values (#{username},#{password},#{token})
     </insert>
 
+    <select id="getUsers" resultType="com.hp.pojo.UserLogin">
+        select * from userlogin where token = 'user'
+        <if test="search != null and search != ''">
+           and realName like CONCAT('%',#{search},'%')
+        </if>
+    </select>
 
+    <select id="getAttendant" resultType="com.hp.pojo.UserLogin">
+        select * from userlogin where token = 'attendant'
+        <if test="search != null and search != ''">
+            and realName like CONCAT('%',#{search},'%')
+        </if>
+    </select>
 
 </mapper>

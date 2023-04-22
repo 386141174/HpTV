@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hp.dao.PublishServiceDao">
+
+
+    <select id="pageSearch" resultType="com.hp.pojo.PublishServiceVo">
+        select p.user_name,
+               p.id,
+        p.phone,
+        p.area,
+        p.floor_unit,
+        CONCAT(DATE_FORMAT(p.start_time, '%Y-%m-%d'),'至',DATE_FORMAT(p.end_time,'%Y-%m-%d')) as  timeScope,
+        u.realName as service_personnel,
+        p.service_personnel_id,
+        d.serial_name ,
+        p.service_content,
+        p.user_id,
+        t.area_name,
+        p.service_number,
+        p.service_value,
+        p.state
+        from publish_service p
+        left join (select value ,serial_name from dictionary where parent_id is not null and serial_number = 'service_items') d  on p.service_value = d.value
+        left join userlogin u on u.id = p.service_personnel_id
+        left join territory t on t.id = p.area
+        <where>
+            <if test="search != null and search != ''">
+                floor_unit like CONCAT('%',#{search},'%')
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_id = #{userName}
+            </if>
+            <if test="serviceName != null and serviceName != ''">
+                and u.username = #{serviceName}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="thisYearService" resultType="com.hp.pojo.PublishServiceVo">
+        select * from publish_service p
+        left join userlogin u on u.id = p.service_personnel_id
+        <where>
+            <if test="userName != 'admin' and userName != null and userName != ''">
+                p.user_id = #{userName}
+            </if>
+            <if test="serviceName != null and serviceName != ''">
+                u.username = #{serviceName}
+            </if>
+            <if test="start != null and end != null">
+                and time between #{start} and #{end}
+            </if>
+        </where>
+
+
+    </select>
+
+
+</mapper>
